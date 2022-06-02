@@ -2,14 +2,16 @@
 	"name": "geeker-admin",
 	"private": true,
 	"version": "0.0.1",
-	"description": "Geeker-Admin后台管理系统",
-	"author": "SpicyBoy <848130454@qq.com>",
+	"description": "rose-Admin后台管理系统",
+	"author": "SpicyBoy <2016644182@qq.com>",
 	"scripts": {
 		"dev": "vite",
 		"serve": "vite",
 		"build:dev": "vue-tsc --noEmit && vite build --mode development",
 		"build:test": "vue-tsc --noEmit && vite build --mode test",
 		"build:pro": "vue-tsc --noEmit && vite build --mode production",
+		"build": "vite build --mode production",
+
 		"preview": "vite preview",
 		"lint:eslint": "eslint --fix --ext .js,.ts,.vue ./src",
 		"lint:prettier": "prettier --write --loglevel warn \"src/**/*.{js,ts,json,tsx,css,less,vue,html,md}\""

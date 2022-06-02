@@ -32,6 +32,28 @@ const assemblyRouter: Array<RouteRecordRaw> = [
 					title: "批量导入数据",
 					key: "batchImport"
 				}
+			},
+			{
+				path: "/assembly/overShowTooltips",
+				name: "overShowTooltips",
+				component: () => import("@/views/assembly/overShowTooltips/index.vue"),
+				meta: {
+					keepAlive: true,
+					requiresAuth: true,
+					title: "超出显示...",
+					key: "overShowTooltips"
+				}
+			},
+			{
+				path: "/assembly/virtualList",
+				name: "virtualList",
+				component: () => import("@/views/assembly/virtualList/index.vue"),
+				meta: {
+					keepAlive: true,
+					requiresAuth: true,
+					title: "虚拟列表",
+					key: "virtualList"
+				}
 			}
 		]
 	}

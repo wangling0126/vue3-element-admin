@@ -1,28 +1,21 @@
 <template>
-	<div class="home flx-center">
-		<div class="box">
-			<over-show-tooltips :text="text" :rowNum="3">
-				<el-icon :size="16" color="red"><BellFilled /></el-icon>{{ text }}
-			</over-show-tooltips>
+	<div class="show-tooltips-content">
+		<el-input-number v-model="rowNum"></el-input-number>
+		<div class="show-tooltips-display">
+			<OverShowTooltips :text="text" :rowNum="rowNum"></OverShowTooltips>
 		</div>
 	</div>
 </template>
 
-<script setup lang="ts" name="home">
+<script setup lang="ts" name="overShowTooltipsShow">
 import OverShowTooltips from "@/components/OverShowTooltips/index.vue";
 import { ref } from "vue";
 const text = ref(
 	"医生问病人是怎么骨折的答：我觉得鞋子里有沙子，就扶着电线杆抖鞋，我抖啊抖啊，有个二货以为我触电了抄起木棍就给了我一棒"
 );
+const rowNum = ref(1);
 </script>
 
 <style scoped lang="scss">
 @import "./index.scss";
-.box {
-	width: 200px;
-	padding: 10px 20px;
-	border: 1px solid #888c8c80;
-	border-radius: 35px;
-	cursor: pointer;
-}
 </style>
