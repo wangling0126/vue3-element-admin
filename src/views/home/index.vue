@@ -1,19 +1,23 @@
 <template>
-	<div class="home flx-center">
-		<div class="box">
-			<over-show-tooltips :text="text" :rowNum="3">
-				<el-icon :size="16" color="red"><BellFilled /></el-icon>{{ text }}
-			</over-show-tooltips>
-		</div>
+	<div class="home">
+		<el-collapse v-model="activeNames" @change="handleChange">
+			<el-collapse-item :title="item.articleType" :name="item.articleType" v-for="item in articlelist" :key="item.name">
+				<div>{{ item.name }}</div>
+			</el-collapse-item>
+		</el-collapse>
 	</div>
+	<articleDetailDrawer :currentArticleInfo="currentArticleInfo"></articleDetailDrawer>
 </template>
 
 <script setup lang="ts" name="home">
-import OverShowTooltips from "@/components/OverShowTooltips/index.vue";
+import articleDetailDrawer from "../article/articleDetailDrawer.vue";
+import { articlelist, ArticleType, IArticleItem } from "@/views/home/menuList";
 import { ref } from "vue";
-const text = ref(
-	"医生问病人是怎么骨折的答：我觉得鞋子里有沙子，就扶着电线杆抖鞋，我抖啊抖啊，有个二货以为我触电了抄起木棍就给了我一棒"
-);
+const activeNames: Ref<Array<ArticleType>> = ref(["vue3"]);
+const currentArticleInfo: Ref<Partial<IArticleItem>> = ref({});
+const handleChange = (val: Array<ArticleType>) => {
+	currentArticleInfo.value = val;
+};
 </script>
 
 <style scoped lang="scss">

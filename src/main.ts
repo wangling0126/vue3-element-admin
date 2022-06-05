@@ -24,7 +24,8 @@ import router from "@/routers/index";
 import I18n from "@/language/index";
 // pinia store
 import pinia from "@/store/index";
-
+// https://prismjs.com/
+import "prismjs/themes/prism.min.css";
 const app = createApp(App);
 
 // 注册element Icons组件

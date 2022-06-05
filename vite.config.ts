@@ -8,7 +8,8 @@ import viteCompression from "vite-plugin-compression";
 import VueSetupExtend from "vite-plugin-vue-setup-extend";
 import eslintPlugin from "vite-plugin-eslint";
 // vue3 setup时给组件命名，用于vue工具调试
-import DefineOptions from 'unplugin-vue-define-options/vite'
+import DefineOptions from "unplugin-vue-define-options/vite";
+import prismjs from "vite-plugin-prismjs";
 // import importToCDN from "vite-plugin-cdn-import";
 // import AutoImport from "unplugin-auto-import/vite";
 // import Components from "unplugin-vue-components/vite";
@@ -53,6 +54,10 @@ export default defineConfig((mode: ConfigEnv): UserConfig => {
 		// plugins
 		plugins: [
 			DefineOptions(),
+			prismjs({
+				// languages: ["json"]
+				languages: "all"
+			}),
 			vue(),
 			createHtmlPlugin({
 				inject: {
