@@ -33,21 +33,14 @@ const copy: Directive = {
 function handleClick(this: any) {
 	const input: CustomHTMLInputElement = document.createElement("input");
 	input.value = this.copyData.toLocaleString();
-	input.style.position = "absolute";
-	input.style.zIndex = 99999;
-	input.style.left = 0;
-	input.style.top = 0;
 	document.body.appendChild(input);
-	setTimeout(() => {
-		input.focus();
-		input.select();
-		document.execCommand("Copy");
-		// document.body.removeChild(input);
-		ElMessage({
-			type: "success",
-			message: "复制成功"
-		});
-	}, 0);
+	input.select();
+	document.execCommand("Copy");
+	// document.body.removeChild(input);
+	ElMessage({
+		type: "success",
+		message: "复制成功"
+	});
 }
 
 export default copy;

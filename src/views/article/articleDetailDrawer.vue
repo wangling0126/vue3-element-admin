@@ -1,7 +1,6 @@
 <template>
-	<el-drawer v-model="isVisibleRef" title="测试" :direction="directionRef" custom-class="drawer-container">
+	<el-drawer v-model="visible" :title="titleRef" :direction="directionRef" custom-class="drawer-container">
 		<div class="code-container">
-			<el-button class="btn-copy" v-copy="code"> copy</el-button>
 			<PreViewCode :code="code" :type="type"> </PreViewCode>
 		</div>
 	</el-drawer>
@@ -9,42 +8,33 @@
 <!--https://blog.csdn.net/qq_27084325/article/details/123717688-->
 <script setup lang="ts" name="articleDetailDrawer">
 import PreViewCode from "@/components/PreViewCode/index.vue";
-// import { readFile } from "fs";
-import { ref } from "vue";
-defineProps({
+import { ref, computed, watch, toRefs } from "vue";
+const props = defineProps({
 	currentArticleInfo: {
 		type: Object,
 		default: () => {}
+	},
+	visible: {
+		type: Boolean,
+		default: false
 	}
 });
-const isVisibleRef = ref(true);
+const { visible, currentArticleInfo } = toRefs(props);
 const directionRef: string = "rtl";
 // 高亮语言类型, 如果配置不是 all 的话, 这个类型需要加在配置中
-// const type = computed(() => {
-// 	return currentArticleInfo.value.codeType;
-// });
 const type = "html";
-// const prevAddress = "@/views/article/";
-// const fileAddress = computed(() => {
-// 	return `${prevAddress}${currentArticleInfo.value.address}`;
-// });
-
-// 高亮代码
+const fileAddress = computed(() => {
+	return `${currentArticleInfo.value?.address}`;
+});
+const titleRef = computed(() => {
+	return currentArticleInfo.value?.name || "题目";
+});
 const code = ref("");
-// readFile(fileAddress.value, (err: any, buffer: any) => {
-// 	if (err) {
-// 		console.log(err);
-// 	} else {
-// 		console.log(buffer.toString(), "二进制");
-// 		code.value = buffer.toString();
-// 	}
-// });
-code.value = `<target><!-- 模拟数据 -->
-      <target>var data = 1</target><target>var data = 1</target>
-      <target>var data = 1</target><target>var data = 1</target>
-      <target>var data = 1</target><target>var data = 1</target>
-      <target>var data = 1</target>
-</target>`;
+watch(fileAddress, newVal => {
+	import(`../article/${newVal}?raw`).then(module => {
+		code.value = module.default;
+	});
+});
 </script>
 
 <style lang="scss">

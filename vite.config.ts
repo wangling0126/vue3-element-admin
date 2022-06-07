@@ -19,12 +19,13 @@ import prismjs from "vite-plugin-prismjs";
 export default defineConfig((mode: ConfigEnv): UserConfig => {
 	const env = loadEnv(mode.mode, process.cwd());
 	const viteEnv = wrapperEnv(env);
-
 	return {
 		resolve: {
 			alias: {
 				"@": resolve(__dirname, "./src"),
 				"vue-i18n": "vue-i18n/dist/vue-i18n.cjs.js"
+				// 使用node内置模块 https://segmentfault.com/q/1010000041141543?utm_source=sf-similar-question
+				// fs: "browserify-fs"
 			}
 		},
 		// global css
