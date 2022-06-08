@@ -1,4 +1,4 @@
-import { ref, Ref } from "vue";
+import { ref } from "vue";
 export type ArticleType = "vue3" | "pinia";
 export interface IArticleItem {
 	name: string;
@@ -15,6 +15,17 @@ const vue3List: ArticleList = [
 		address: "vue3.teleport/index.vue",
 		articleType: "vue3",
 		codeType: "vue"
+	},
+	{
+		name: "vue3样式改造",
+		address: "vue3.style/index.vue",
+		articleType: "vue3",
+		codeType: "vue"
 	}
 ];
-export const articlelist: Ref<ArticleList> = ref([...vue3List]);
+export const articlelist = ref([
+	{
+		type: "vue3",
+		list: vue3List
+	}
+]);

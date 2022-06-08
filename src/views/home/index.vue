@@ -1,8 +1,10 @@
 <template>
 	<div class="home">
 		<el-collapse v-model="activeNames">
-			<el-collapse-item :title="item.articleType" :name="item.articleType" v-for="item in articlelist" :key="item.name">
-				<span @click="goDetail(item)" class="article-item">{{ item.name }}</span>
+			<el-collapse-item :title="item.type" :name="item.type" v-for="item in articlelist" :key="item.type">
+				<div @click="goDetail(innerItem)" class="article-item" v-for="innerItem in item.list" :key="innerItem.name">
+					{{ innerItem.name }}
+				</div>
 			</el-collapse-item>
 		</el-collapse>
 	</div>
